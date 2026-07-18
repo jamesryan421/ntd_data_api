@@ -1,0 +1,4 @@
+# NTD Data API Key
+Key ID: 999b2occzw4l3dmzhqmsw5j1k
+
+Key Secret: 4h0s5hzep2jb0n1furbds7a75ct1gadn4wa9qvtoh6valdgdwv
