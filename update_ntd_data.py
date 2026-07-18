@@ -30,12 +30,14 @@ DB_CONNECTION = f"postgresql://{user}:{safe_password}@{host}:{port}/{db_name}"
 
 endpoints_to_sync = {
     "annual_metrics":os.environ.get("API_ANNUAL_METRICS"),
-    "monthly_ridership":os.environ.get("API_MONTHLY_RIDERSHIP"),
-    "agency_info":os.environ.get("API_AGENCY_INFO"),
+    #"monthly_ridership":os.environ.get("API_MONTHLY_RIDERSHIP"),
+    #"agency_info":os.environ.get("API_AGENCY_INFO"),
     "stations_facilities_type":os.environ.get("API_STATIONS_FACILITIES_TYPE"),
     "stations_facilities_mode_age":os.environ.get("API_STATIONS_FACILITIES_MODE_AGE"),
     "vehicles_age":os.environ.get("API_VEHICLE_AGE"),
-    "vehicles_type":os.environ.get("API_VEHICLES_TYPE")
+    "vehicles_type":os.environ.get("API_VEHICLES_TYPE"),
+    "service_mode_time":os.environ.get("API_SERVICE_MODE_TIME"),
+    "service_agency":os.environ.get("API_SERVICE_AGENCY")
 }
 
 def main():
