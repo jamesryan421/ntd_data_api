@@ -10,3 +10,9 @@ DB_CONNECTION=postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_
 
 # API Configuration Endpoints
 API_ANNUAL_METRICS=https://data.transportation.gov/resource/ekg5-frzt.json
+API_MONTHLY_RIDERSHIP=https://data.transportation.gov/resource/is6p-8z4d.json
+API_AGENCY_INFO=https://data.transportation.gov/resource/9w9z-vkwy.json
+API_STATIONS_FACILITIES_TYPE=https://data.transportation.gov/resource/aqct-knjk.json
+API_STATIONS_FACILITIES_MODE_AGE=https://data.transportation.gov/resource/wfz2-eft6.json
+API_VEHICLES_AGE=https://data.transportation.gov/resource/6abt-uhgq.json
+API_VEHICLES_TYPE=https://data.transportation.gov/resource/nimp-626k.json
