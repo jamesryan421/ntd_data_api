@@ -3,7 +3,8 @@
 # Import third-party dependencies
 import logging
 import os
-from dotenv import load_workbook, load_dotenv
+import urllib.parse
+from dotenv import load_dotenv
 
 # Import local package
 from ntd_data_extractor.extractor import TransitDataPipeline
@@ -14,10 +15,27 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 # Load environment and configuration parameters
 load_dotenv()
 
-DB_CONNECTION = os.environ.get("DB_CONNECTION")
+# 1. Pull the raw components out of the environment
+user = os.environ.get("DB_USER")
+password = os.environ.get("DB_PASSWORD")
+host = os.environ.get("DB_HOST")
+port = os.environ.get("DB_PORT")
+db_name = os.environ.get("DB_NAME")
+
+# 2. Safely URL-encode the password (handles @, !, #, etc.)
+safe_password = urllib.parse.quote_plus(password)
+
+# 3. Assemble the string cleanly in your code
+DB_CONNECTION = f"postgresql://{user}:{safe_password}@{host}:{port}/{db_name}"
 
 endpoints_to_sync = {
-    "ntd_annual_metrics":os.environ.get("API_ANNUAL_METRICS")
+    "annual_metrics":os.environ.get("API_ANNUAL_METRICS"),
+    "monthly_ridership":os.environ.get("API_MONTHLY_RIDERSHIP"),
+    "agency_info":os.environ.get("API_AGENCY_INFO"),
+    "stations_facilities_type":os.environ.get("API_STATIONS_FACILITIES_TYPE"),
+    "stations_facilities_mode_age":os.environ.get("API_STATIONS_FACILITIES_MODE_AGE"),
+    "vehicles_age":os.environ.get("API_VEHICLE_AGE"),
+    "vehicles_type":os.environ.get("API_VEHICLES_TYPE")
 }
 
 def main():

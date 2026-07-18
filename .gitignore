@@ -221,4 +221,5 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
+# Ignore local .env files
 .env
