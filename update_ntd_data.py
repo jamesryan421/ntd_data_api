@@ -34,10 +34,25 @@ endpoints_to_sync = {
     #"agency_info":os.environ.get("API_AGENCY_INFO"),
     "stations_facilities_type":os.environ.get("API_STATIONS_FACILITIES_TYPE"),
     "stations_facilities_mode_age":os.environ.get("API_STATIONS_FACILITIES_MODE_AGE"),
-    "vehicles_age":os.environ.get("API_VEHICLE_AGE"),
+    "vehicles_age":os.environ.get("API_VEHICLES_AGE"),
     "vehicles_type":os.environ.get("API_VEHICLES_TYPE"),
     "service_mode_time":os.environ.get("API_SERVICE_MODE_TIME"),
-    "service_agency":os.environ.get("API_SERVICE_AGENCY")
+    "service_agency":os.environ.get("API_SERVICE_AGENCY"),
+    "capital_expenses_capital_use":os.environ.get("API_CAPEX_CAPITAL_USE"),
+    "capital_expenses_mode":os.environ.get("API_CAPEX_MODE"),
+    "capital_expenses_existing":os.environ.get("API_CAPEX_EXISTING"),
+    "capital_expenses_expansion":os.environ.get("API_CAPEX_EXPANSION"),
+    "operating_expenses_function":os.environ.get("API_OPEX_FUNCTION"),
+    "operating_expenses_type":os.environ.get("API_OPEX_TYPE"),
+    "breakdowns":os.environ.get("API_BREAKDOWNS"),
+    "fuel_and_energy":os.environ.get("API_FUEL_ENERGY"),
+    "funding_expended":os.environ.get("API_FUNDING_EXPENDED"),
+    "funding_direct":os.environ.get("API_FUNDING_DIRECTLY_GENERATED"),
+    "funding_taxes":os.environ.get("API_FUNDING_TAXES"),
+    "funding_local":os.environ.get("API_FUNDING_LOCAL"),
+    "funding_state":os.environ.get("API_FUNDING_STATE"),
+    "funding_federal":os.environ.get("API_FUNDING_FEDERAL"),
+    "maintenance_facilities":os.environ.get("API_MAINTENANCE_FACILITIES")
 }
 
 def main():

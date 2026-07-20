@@ -56,9 +56,37 @@ class TransitDataPipeline:
             master_df = pd.concat(all_chunks, ignore_index=True)
             master_df.columns = [c.lower().replace(' ', '_') for c in master_df.columns]
             
-            logging.info(f"Pouring {len(master_df)} rows into Postgres table '{target_table}'...")
+            # Type inference
+            for col in master_df.columns:
+                # 1. First drop nulls temporarily to see what the actual values look like
+                non_null_data = master_df[col].dropna()
+                if non_null_data.empty:
+                    continue
+
+                # Attempt to safely convert text columns to numeric types
+                # errors='ignore' leaves purely text columns (like agency names) untouched
+                converted_col = pd.to_numeric(master_df[col], errors='ignore')
+                
+                # 2. Check if the conversion successfully resulted in a numeric float type
+                if pd.api.types.is_float_dtype(converted_col):
+                    # Drop null values temporarily just to inspect the actual remaining data
+                    non_null_data = converted_col.dropna()
+                    
+                    if not non_null_data.empty:
+                        # 3. Check if all remaining numbers are whole numbers (integers)
+                        # Since we verified it's a float dtype, the modulo operator % is safe here
+                        if (non_null_data % 1 == 0).all():
+                            # Convert to the nullable 'Int64' type so it handles integers + NaNs
+                            converted_col = pd.to_numeric(converted_col, downcast='integer')
+
+                # If conversion changed the data type, update the column in our dataframe
+                if converted_col.dtype != master_df[col].dtype:
+                    master_df[col] = converted_col
+                    logging.info(f"   - Converted column '{col}' to {converted_col.dtype}")
+                    
             
-            # Write to SQL
+            # 3. Write clean dataframe straight into SQL
+            logging.info(f"Pouring {len(master_df)} rows into Postgres table '{target_table}'...")
             master_df.to_sql(target_table, con=self.engine, if_exists='replace', index=False)
             logging.info(f"Success! Table '{target_table}' is fully updated.")
         else:

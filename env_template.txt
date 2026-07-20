@@ -16,3 +16,5 @@ API_STATIONS_FACILITIES_TYPE=https://data.transportation.gov/resource/aqct-knjk.
 API_STATIONS_FACILITIES_MODE_AGE=https://data.transportation.gov/resource/wfz2-eft6.json
 API_VEHICLES_AGE=https://data.transportation.gov/resource/6abt-uhgq.json
 API_VEHICLES_TYPE=https://data.transportation.gov/resource/nimp-626k.json
+API_SERVICE_MODE_TIME=https://data.transportation.gov/resource/wwdp-t4re.json
+API_SERVICE_AGENCY=https://data.transportation.gov/resource/6y83-7vuw.json
